@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'grit'
+
+repo = Grit::Repo.new('./.git')
+repo.commits('master', 1000).group_by{|c| c.date.strftime("%y.%m.%d") }.each_pair {|k, v|
+  puts k
+  puts "="*25
+  v.each do |commit|
+    puts commit.message
+  end
+  puts "Total: #{v.count}"
+  puts
+}

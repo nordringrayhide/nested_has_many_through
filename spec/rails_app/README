@@ -1,0 +1,13 @@
+#########
+# Models
+#
+# Domain model is this:
+#
+#   - authors (type of user) can create posts in categories
+#   - users can comment on posts
+#   - authors have similar_posts: posts in the same categories as ther posts
+#   - authors have similar_authors: authors of the recommended_posts
+#   - authors have posts_of_similar_authors: all posts by similar authors (not just the similar posts,
+#                                            similar_posts is be a subset of this collection)
+#   - authors have commenters: users who have commented on their posts
+#
