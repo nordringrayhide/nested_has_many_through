@@ -58,7 +58,7 @@ module NestedHasManyThrough
       # Any subsequent joins / filters on owner attributes will act on the through association,
       # so that's what we return for the conditions/keys of the overall association.
       conditions = through_attrs[:conditions]
-      conditions += " AND #{interpolate_sql(reflection.klass.send(:sanitize_sql, reflection.options[:conditions]))}" if reflection.options[:conditions]
+      conditions += " AND #{reflection.klass.send(:sanitize_sql, reflection.options[:conditions])}" if reflection.options[:conditions]
 
       {
         :joins => "%s INNER JOIN %s ON ( %s = %s.%s %s) %s %s" % [
@@ -98,7 +98,7 @@ module NestedHasManyThrough
       # Add type_condition, if applicable
       conditions += " AND #{association_class.send(:type_condition).to_sql}" if association_class.finder_needs_type_condition?
       # Add custom conditions
-      conditions += " AND (#{interpolate_sql(association_class.send(:sanitize_sql, reflection.options[:conditions]))})" if reflection.options[:conditions]
+      conditions += " AND (#{association_class.send(:sanitize_sql, reflection.options[:conditions])})" if reflection.options[:conditions]
 
       if reflection.macro == :belongs_to
         if reflection.options[:polymorphic]
