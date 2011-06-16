@@ -1,5 +1,6 @@
 class Author < User
   has_many :posts
+  has_many :sources
   has_many :categories, :through => :posts
   has_many :similar_posts, :through => :categories, :source => :posts
   has_many :similar_authors, :through => :similar_posts, :source => :author, :uniq => true
