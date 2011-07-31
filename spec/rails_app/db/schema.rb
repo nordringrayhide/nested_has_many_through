@@ -15,6 +15,10 @@ ActiveRecord::Schema.define(:version => 0) do
     t.column "type", :string
   end
 
+  create_table :sources, :force => true do |t|
+    t.column "author_id", :integer
+  end
+
   create_table :posts, :force => true do |t|
     t.column "author_id", :integer
     t.column "category_id", :integer

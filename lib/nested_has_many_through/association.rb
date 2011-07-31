@@ -123,10 +123,12 @@ module NestedHasManyThrough
         }
       end
     end
+
+    def belongs_to_quoted_key
+      attribute, col = @reflection.through_reflection.primary_key_name, @owner.column_for_attribute(attribute)
+      @owner.send(:quote_value, @owner.send(attribute), col)
+    end
+
   end
 
-  def belongs_to_quoted_key
-    attribute, col = @reflection.through_reflection.primary_key_name, @owner.column_for_attribute(attribute)
-    @owner.send(:quote_value, @owner.send(attribute), col)
-  end
 end
