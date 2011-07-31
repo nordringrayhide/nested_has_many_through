@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
   named_scope(:inflamatory, :conditions => {:inflamatory => true}) if respond_to?(:named_scope)
 
   belongs_to :author
+  has_many :sources, :through => :author
   belongs_to :category
   has_many :comments
   has_many :commenters, :through => :comments, :source => :user, :uniq => true
