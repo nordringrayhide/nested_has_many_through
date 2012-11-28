@@ -98,7 +98,7 @@ module NestedHasManyThrough
       # Add type_condition, if applicable
       conditions += " AND #{association_class.send(:type_condition).to_sql}" if association_class.finder_needs_type_condition?
       # Add custom conditions
-      conditions += " AND (#{association_class.send(:sanitize_sql, reflection.options[:conditions])})" if reflection.options[:conditions]
+      conditions += " AND (#{interpolate_and_sanitize_sql(reflection.options[:conditions], nil, association_class)})" if reflection.options[:conditions]
 
       if reflection.macro == :belongs_to
         if reflection.options[:polymorphic]

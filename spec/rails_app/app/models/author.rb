@@ -1,5 +1,5 @@
 class Author < User
-  has_many :posts
+  has_many :posts, :conditions => proc{ "1=1" }
   has_many :sources
   has_many :categories, :through => :posts
   has_many :similar_posts, :through => :categories, :source => :posts
